@@ -1,0 +1,47 @@
+{
+  "name": "wp-digital/wp-uptime-page",
+  "version": "1.0.0",
+  "type": "wordpress-muplugin",
+  "description": "Adds Uptime Page like from Pingdom into site's Dashboard.",
+  "license": "GPL-2.0+",
+  "keywords": [
+    "wordpress",
+    "plugins",
+    "uptime",
+    "page",
+    "uptime",
+    "pingdom"
+  ],
+  "authors": [
+    {
+      "name": "SMFB Dinamo",
+      "email": "post@smfb-dinamo.com",
+      "homepage": "https://www.smfb-dinamo.com/"
+    },
+    {
+      "name": "Viktor Kuliebiakin",
+      "email": "kuliebiakin@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "innocode-digital/php-cs": "^1.0",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "scripts": {
+    "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+    "phpcbf": "vendor/bin/phpcbf --standard=phpcs.xml"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPD\\UptimePage\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
