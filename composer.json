@@ -1,6 +1,6 @@
 {
   "name": "wp-digital/wp-uptime-page",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "wordpress-muplugin",
   "description": "Adds Uptime Page like from Pingdom into site's Dashboard.",
   "license": "GPL-2.0+",
@@ -24,7 +24,8 @@
     }
   ],
   "require": {
-    "php": ">=7.4"
+    "php": ">=7.4",
+    "ext-json": "*"
   },
   "require-dev": {
     "innocode-digital/php-cs": "^1.0",
