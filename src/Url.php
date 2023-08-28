@@ -17,19 +17,12 @@ class Url {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_base_url(): string {
-		return $this->base_url;
-	}
-
-	/**
 	 * @param string $path
 	 * @param array  $query
 	 * @return string
 	 */
 	public function __invoke( string $path = '', array $query = [] ): string {
-		$url = $this->get_base_url();
+		$url = $this->base_url;
 
 		if ( $path ) {
 			$url = trailingslashit( $url ) . ltrim( $path, '/' );

@@ -6,6 +6,9 @@ use WPD\UptimePage\Providers\Provider;
 
 final class Plugin {
 
+	/**
+	 * @const string
+	 */
 	private const OPTION_NAME = 'wpd_uptime_page_path';
 
 	/**
@@ -36,33 +39,12 @@ final class Plugin {
 	}
 
 	/**
-	 * @return Url
-	 */
-	public function get_url(): Url {
-		return $this->url;
-	}
-
-	/**
-	 * @return Provider
-	 */
-	public function get_provider() : Provider {
-		return $this->provider;
-	}
-
-	/**
-	 * @return Integrations\Integration[]
-	 */
-	public function get_integrations(): array {
-		return $this->integrations;
-	}
-
-	/**
 	 * @return void
 	 */
 	public function run() {
 		add_action( 'admin_menu', [ $this, 'add_pages' ] );
 
-		foreach ( $this->get_integrations() as $integration ) {
+		foreach ( $this->integrations as $integration ) {
 			$integration->run( $this );
 		}
 	}
@@ -84,19 +66,24 @@ final class Plugin {
 	 * @return void
 	 */
 	public function render_page() {
-		$url  = $this->get_url();
+		$url  = $this->url;
 		$path = (string) get_option( self::OPTION_NAME, '' );
 
 		if ( ! $path ) {
-			$path = $this->get_provider()->path();
+			$path = $this->provider->path();
 
 			update_option( self::OPTION_NAME, $path );
 		}
 
 		printf(
-			'<iframe src="%s" allowfullscreen style="%s"></iframe>',
+			'<div style="%s"><iframe src="%s" allowfullscreen style="%s"></iframe></div>',
+			esc_attr(
+				'position: absolute; width: 100%; height: calc(100vh - 100px); overflow: hidden;'
+			),
 			esc_url( $url( $path ) ),
-			'position: absolute; border: 0; width: 100%; height: calc(100% - 100px); min-height: calc(100vh - 100px);'
+			esc_attr(
+				'position: absolute; width: 100%; height: 100vh;'
+			)
 		);
 	}
 

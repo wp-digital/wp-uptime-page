@@ -25,20 +25,6 @@ class HttpClient {
 	}
 
 	/**
-	 * @return Url
-	 */
-	public function get_url(): Url {
-		return $this->url;
-	}
-
-	/**
-	 * @return array
-	 */
-	public function get_request_args(): array {
-		return $this->request_args;
-	}
-
-	/**
 	 * @param string $path
 	 * @param array  $query
 	 * @param array  $request_args
@@ -46,8 +32,8 @@ class HttpClient {
 	 * @throws BadResponseException If the response is not valid.
 	 */
 	protected function request( string $path, array $query, array $request_args = [] ): array {
-		$url  = ( $this->get_url() )( $path, $query );
-		$args = array_merge_recursive( $this->get_request_args(), $request_args );
+		$url  = ( $this->url )( $path, $query );
+		$args = array_merge_recursive( $this->request_args, $request_args );
 
 		$response = wp_remote_request( $url, $args );
 

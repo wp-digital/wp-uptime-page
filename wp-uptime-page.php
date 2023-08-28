@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Uptime Page
  * Description: Adds Uptime Page like from Pingdom into site's Dashboard.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: SMFB Dinamo
  * Author URI: https://smfb-dinamo.com
- * Tested up to: 6.2.2
+ * Tested up to: 6.3.0
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */

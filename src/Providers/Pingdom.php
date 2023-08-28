@@ -36,27 +36,6 @@ class Pingdom implements Provider {
 	}
 
 	/**
-	 * @return string
-	 */
-	public function get_token(): string {
-		return $this->token;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function get_project(): string {
-		return $this->project;
-	}
-
-	/**
-	 * @return HttpClient
-	 */
-	public function get_client(): HttpClient {
-		return $this->client;
-	}
-
-	/**
 	 * @return array
 	 * @throws ProviderException If the request fails.
 	 */
@@ -64,12 +43,12 @@ class Pingdom implements Provider {
 		$path = 'checks';
 
 		try {
-			return $this->get_client()->get(
+			return $this->client->get(
 				$path,
 				[],
 				[
 					'headers' => [
-						'Authorization' => "Bearer {$this->get_token()}",
+						'Authorization' => "Bearer $this->token",
 					],
 				]
 			);
@@ -86,7 +65,7 @@ class Pingdom implements Provider {
 		$response = $this->checks();
 
 		foreach ( $response['checks'] as $check ) {
-			if ( $check['name'] === $this->get_project() ) {
+			if ( $check['name'] === $this->project ) {
 				return $check['id'];
 			}
 		}
